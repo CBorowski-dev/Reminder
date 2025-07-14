@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ReminderApplication {
 
 	public static void main(String[] args) {
-		// SpringApplication.run(ReminderApplication.class, args);
 		System.exit(SpringApplication.exit(SpringApplication.run(ReminderApplication.class, args)));
 	}
 

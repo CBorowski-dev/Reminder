@@ -42,7 +42,7 @@ public class BatchConfiguration {
     public Step step1(JobRepository jobRepository, DataSourceTransactionManager transactionManager,
                       ToDoReader reader, ToDoProcessor processor, EmailWriter writer) {
         return new StepBuilder("step1", jobRepository)
-                .<String, String>chunk(3, transactionManager)
+                .<ToDo, ToDo>chunk(3, transactionManager)
                 .reader(reader)
                 .processor(processor)
                 .writer(writer)

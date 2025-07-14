@@ -1,26 +1,28 @@
   [
     {
-      "todo": "ToDo 1",
+      "topic": "ToDo 1",
       "description": "Das ist die Beschreibung für ToDo 1",
       "mailAddress": "christoph.borowski@gmx.de",
-      "dates": [
-        "10.05.2025"
+      "deadlines": [
+        {"date": "10.05.2025", "done": false}
       ]
     },
     {
-      "todo": "ToDo 2",
+      "topic": "ToDo 2",
       "description": "Das ist die Beschreibung für ToDo 2",
       "mailAddress": "christoph.borowski@gmx.de",
-      "dates": [
-        "11.06.2025", "12.07.2025", "13.08.2025"
+      "deadlines": [
+        {"date": "11.06.2025", "done": true},
+        {"date": "12.07.2025", "done": false},
+        {"date": "13.08.2025", "done": false}
       ]
     },
     {
-      "todo": "ToDo 3",
+      "topic": "ToDo 3",
       "description": "Das ist die Beschreibung für ToDo 3",
       "mailAddress": "christoph.borowski@gmx.de",
-      "dates": [
-        "20.10.2025"
+      "deadlines": [
+        {"date": "20.10.2025", "done": false}
       ]
     }
   ]
