@@ -16,6 +16,8 @@ public class EmailServiceImpl {
     private String username;
     @Value( "${password}" )
     private String password;
+    @Value( "${from}" )
+    private String from;
 
     /**
      *
@@ -47,7 +49,7 @@ public class EmailServiceImpl {
      */
     public void sendSimpleMessage(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("christoph.borowski@gmx.de");
+        message.setFrom(from);
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
