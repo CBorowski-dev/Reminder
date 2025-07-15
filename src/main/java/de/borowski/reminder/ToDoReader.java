@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 
@@ -35,8 +37,8 @@ public class ToDoReader implements ItemReader<ToDo> {
             JsonArray deadlines = json.getJsonArray("deadlines");
             for (int i=0; i< deadlines.size(); i++) {
                 JsonObject dl = deadlines.getJsonObject(i);
-                DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN);
-                Date date = format.parse(dl.getString("date"));
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.GERMAN);
+                LocalDate date = LocalDate.parse(dl.getString("date"), formatter);
                 todo.addDeadline(new Deadline(date, dl.getBoolean("done")));
             }
             return todo;

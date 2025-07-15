@@ -1,9 +1,9 @@
 package de.borowski.reminder;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Deadline {
-    Date date;
+    LocalDate date;
     boolean done;
 
     /**
@@ -11,7 +11,7 @@ public class Deadline {
      * @param date
      * @param done
      */
-    public Deadline(Date date, boolean done) {
+    public Deadline(LocalDate date, boolean done) {
         this.date = date;
         this.done = done;
     }
