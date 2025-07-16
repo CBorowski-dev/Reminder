@@ -48,4 +48,5 @@ public class BatchConfiguration {
                 .writer(writer)
                 .build();
     }
+
 }

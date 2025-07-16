@@ -5,11 +5,10 @@ import org.springframework.batch.item.ItemReader;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class ToDoReader implements ItemReader<ToDo> {
@@ -29,21 +28,26 @@ public class ToDoReader implements ItemReader<ToDo> {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
-    public ToDo read() throws Exception {
+    public ToDo read() {
         if (jsonArray != null && index < jsonArray.size()) {
             JsonObject json =  jsonArray.getJsonObject(index++);
-            ToDo todo = new ToDo(json.getString("topic"), json.getString("description"), json.getString("mailAddress"));
+            List<Deadline> deadlinesList = new ArrayList<>();
             JsonArray deadlines = json.getJsonArray("deadlines");
             for (int i=0; i< deadlines.size(); i++) {
                 JsonObject dl = deadlines.getJsonObject(i);
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.GERMAN);
                 LocalDate date = LocalDate.parse(dl.getString("date"), formatter);
-                todo.addDeadline(new Deadline(date, dl.getBoolean("done")));
+                deadlinesList.add(new Deadline(date, dl.getBoolean("done")));
             }
-            return todo;
+            return new ToDo(json.getString("topic"), json.getString("description"), json.getString("mailAddress"), deadlinesList);
         } else {
             return null;  // Signals the end of reading
         }
     }
+
 }

@@ -14,15 +14,14 @@ public class EmailWriter implements ItemWriter<ToDo> {
     /**
      *
      * @param items
-     * @throws Exception
      */
     @Override
-    public void write(Chunk<? extends ToDo> items) throws Exception {
+    public void write(Chunk<? extends ToDo> items) {
         for (ToDo item : items) {
-            List<Deadline> deadlines = item.deadlines;
+            List<Deadline> deadlines = item.deadlines();
             if (!deadlines.isEmpty()) {
                 for (Deadline dl: deadlines)
-                    emailService.sendSimpleMessage(item.mailAddress, item.topic, item.description + "\n\n" + dl.date);
+                    emailService.sendSimpleMessage(item.mailAddress(), item.topic(), item.description() + "\n\n" + dl.date());
             }
         }
     }
